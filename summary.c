@@ -1,22 +1,54 @@
 /*
-	对浮点数进行多次加法运算
+	遍历字符串并显示
 */
 
 #include <stdio.h>
 
+#define STR_LENGTH	128		/* 字符串的最大长度（包括null字符）*/
+
+/*--- 显示字符串s及其构成字符 ---*/
+void put_string_rep(const char s[])
+{
+	int i = 0;
+
+	while (s[i])
+		putchar(s[i++]);
+
+	printf("   { ");
+
+	i = 0;
+	while (s[i]) {
+		putchar('"');
+		putchar(s[i++]);
+		printf("' ");
+	}
+
+	printf("'\\0' }\n");
+}
+
 int main(void)
 {
-	int i, no;
-	float value;		/* 值 */
-	float sum = 0.0f;	/* 和 */
+	int i;
+	char s[STR_LENGTH];
+	char ss[5][STR_LENGTH];
 
-	puts("对浮点数进行多次加法运算。");
-	printf("值");     scanf("%f", &value);
-	printf("次数");   scanf("%d", &no);
+	printf("字符串s：");
+	scanf("%s", s);
 
-	for (i = 0; i < no; i++)
-		sum += value;
-	printf("加法运算的结果是%f。\n", sum);
+	printf("请输入5个字符串。\n");
+	for (i = 0; i < 5; i++) {
+		printf("ss[%d]：", i);
+		scanf("%s", ss[i]);
+	}
+
+	printf("字符串s：");
+	put_string_rep(s);
+
+	printf("字符串数组ss\n");
+	for (i = 0; i < 5; i++) {
+		printf("ss[%d]：", i);
+		put_string_rep(ss[i]);
+	}
 
 	return 0;
 }
