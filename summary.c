@@ -1,53 +1,24 @@
 /*
-	遍历字符串并显示
+	将标准输入的数据写入文件
 */
 
 #include <stdio.h>
 
-#define STR_LENGTH	128		/* 字符串的最大长度（包括null字符）*/
-
-/*--- 显示字符串s及其构成字符 ---*/
-void put_string_rep(const char s[])
-{
-	int i = 0;
-
-	while (s[i])
-		putchar(s[i++]);
-
-	printf("   { ");
-
-	i = 0;
-	while (s[i]) {
-		putchar('"');
-		putchar(s[i++]);
-		printf("' ");
-	}
-
-	printf("'\\0' }\n");
-}
-
 int main(void)
 {
-	int i;
-	char s[STR_LENGTH];
-	char ss[5][STR_LENGTH];
+	int ch;
+	FILE *fp;						/* 原文件名 */
+	char fname[FILENAME_MAX];		/* 目标文件名 */
 
-	printf("字符串s：");
-	scanf("%s", s);
+	printf("目标文件名：");
+	scanf("%s\n", fname);
 
-	printf("请输入5个字符串。\n");
-	for (i = 0; i < 5; i++) {
-		printf("ss[%d]：", i);
-		scanf("%s", ss[i]);
-	}
-
-	printf("字符串s：");
-	put_string_rep(s);
-
-	printf("字符串数组ss\n");
-	for (i = 0; i < 5; i++) {
-		printf("ss[%d]：", i);
-		put_string_rep(ss[i]);
+	if ((fp = fopen(fname, "w")) == NULL)	/* 打开目标文件 */
+		printf("\a无法打开目标文件。\n");
+	else {
+		while ((ch = fgetc(stdin)) != EOF)
+			fputc(ch, fp);
+		fclose(fp);							/* 关闭目标文件 */
 	}
 
 	return 0;
