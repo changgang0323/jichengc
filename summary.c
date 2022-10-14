@@ -1,38 +1,22 @@
 /*
-	第4章的总结
+	对浮点数进行多次加法运算
 */
 
 #include <stdio.h>
 
 int main(void)
 {
-	int i, j;
-	int x, y, z;
+	int i, no;
+	float value;		/* 值 */
+	float sum = 0.0f;	/* 和 */
 
-	do {
-		printf("0~100 的整数值：");
-		scanf("%d", &x);
-	} while (x < 0 || x > 100);
+	puts("对浮点数进行多次加法运算。");
+	printf("值");     scanf("%f", &value);
+	printf("次数");   scanf("%d", &no);
 
-	y = x;
-	z = x;
-	while (y >= 0)
-		printf("%d %d\n", y--, ++z);
-
-	printf("宽和高为整数面积为%d"
-		   "的长方形的边长是：\n", x);
-	for (i = 1; i < x; i++) {
-		if (i * i > x) break;      /* break语句    */
-		if (x % i != 0) continue;  /* continue语句 */
-		printf("%d × %d\n", i, x / i);
-	}
-
-	puts("5行7列的星号");
-	for (i = 1; i <= 5; i++) {
-		for (j = 1; j <= 7; j++)
-			putchar('*');
-		putchar('\n');
-	}
+	for (i = 0; i < no; i++)
+		sum += value;
+	printf("加法运算的结果是%f。\n", sum);
 
 	return 0;
 }

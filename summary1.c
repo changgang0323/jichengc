@@ -1,26 +1,23 @@
 /*
-	第3章的总结（其1）显示所输入的月份所处的季节
+	第8章总结（枚举）
 */
 
 #include <stdio.h>
 
+enum RGB {Red, Green, Blue};
+
 int main(void)
 {
-	int month;					/* 月 */
+	int color;
 
-	printf("请输入月份：");
-	scanf("%d", &month);
+	printf("0~2的值：");  scanf("%d", &color);
 
-	if (month < 1 || month > 12)
-		printf("%d月不存在!!\a\n", month);
-	else if (month <= 2 || month == 12)
-		printf("%d月是冬季。\n", month);
-	else if (month >= 9)
-		printf("%d月是秋季。\n", month);
-	else if (month >= 6)
-		printf("%d月是夏季。\n", month);
-	else
-		printf("%d月是春季。\n", month);
+	printf("你选择了");  
+	switch (color) {
+	 case 0 : printf("红色。\n");  break;
+	 case 1 : printf("绿色。\n");  break;
+	 case 2 : printf("蓝色。\n");  break;
+	}
 
 	return 0;
 }

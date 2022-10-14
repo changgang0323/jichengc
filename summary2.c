@@ -1,24 +1,33 @@
 /*
-	第3章的总结（其2）显示数值对应的颜色
+	第8章总结（函数式宏、逗号运算符、字符的输入输出等）
 */
 
 #include <stdio.h>
 
+/* 响铃 */
+#define alert() (putchar('\a'))
+
+/* 显示字符c并换行 */
+#define putchar_ln(c) (putchar(c), putchar('\n'))
+
 int main(void)
 {
-	int sw;
+	int ch;
+	int sum = 0;	/* 显示所有数字之和 */
 
-	printf("请输入一个整数：");
-	scanf("%d", &sw);
+	while ((ch = getchar()) != EOF) {
+		if (ch >= '0' && ch <= '9')
+			sum += ch - '0';
 
-	if (sw >= 1 && sw <= 3) {
-		switch (sw) {
-		 case 1: printf("红色");  break;
-		 case 2: printf("蓝色");  break;
-		 case 3: printf("白色");  break;
+		if (ch == '\n') {
+			alert();
+			putchar('\n');
+		} else {
+			putchar_ln(ch);
 		}
-		printf("\n");
 	}
+
+	printf("所有数字之和为%d。\n", sum);
 
 	return 0;
 }
